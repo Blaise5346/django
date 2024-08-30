@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .answer {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Questions</h1>
+    {% for question in questions %}
+        <div class="question">
+            {{ question.question }} ({{ question.marks }} marks)
+            {% for answer in question.answer_set.all %}
+                <div class="answer">
+                    {{ answer.answer }} ({{ answer.is_correct|yesno:"Correct,Incorrect" }})
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
+</html>
